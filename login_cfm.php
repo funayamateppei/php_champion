@@ -40,10 +40,9 @@ if (password_verify($_POST['password'], $row['password'])) {
   $_SESSION['session_id'] = session_id();
   $_SESSION['email'] = $row['email'];
   $_SESSION['id'] = $row['id'];
-  $_SESSION['username'] = $row['username'];
 } else {
   echo 'パスワードが間違っています。';
   return false;
 }
 
-header('Location:./home.php');
+header('Location:./group_select.php');

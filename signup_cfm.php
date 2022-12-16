@@ -3,6 +3,8 @@
 // DB接続
 require_once('./functions/connect_db.php');
 
+session_start();
+
 // パスワードと確認用パスワードのバリデーション
 if ($_POST['password'] !== $_POST['cfmpassword']) {
   echo ('パスワードと確認用パスワードが一致しません。');
@@ -39,6 +41,9 @@ if (!isset($row['email'])) {
   // SQL実行（実行に失敗すると `sql error ...` が出力される）
   try {
     $status = $stmt->execute();
+    session_regenerate_id(true); //session_idを新しく生成し、置き換える
+    $_SESSION['session_id'] = session_id();
+    $_SESSION['email'] = $_POST['email'];
   } catch (PDOException $e) {
     echo json_encode(["sql error" => "{$e->getMessage()}"]);
     exit();
