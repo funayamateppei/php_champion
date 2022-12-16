@@ -15,14 +15,15 @@
     <legend>Login</legend>
     <form action="./login_cfm.php" method="POST">
       <label for="email">Email</label>
-      <input id="email" class="input" type="email">
+      <input id="email" class="input" type="email" name="email">
       <label for="password">Password</label>
-      <input id="password" class="input" type="password">
+      <input id="password" class="input" type="password" name="password">
       <button>Login</button>
     </form>
   </fieldset>
   <p>登録がお済みではない方はこちら</p>
   <a href="./signup.php">Signup</a>
+  
 
   <!-- jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

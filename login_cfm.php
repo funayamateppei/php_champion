@@ -1,16 +1,16 @@
 <?php
 
-// var_dump($_POST['email']);
+// var_dump($_POST);
 // exit();
 session_start();
 
 // DB接続
-require_once('./function/config.php');
+require_once('./functions/connect_db.php');
 
 // メールアドレスのバリデーション
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  echo '入力された値が不正です。';
-  return false;
+  $error = '入力された値が不正です。';
+  header("./login_miss.php?error={$error}");
 }
 
 // SQL作成実行取得
@@ -24,21 +24,20 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //emailがDB内に存在しているか確認
 if (!isset($row['email'])) {
-  echo 'このメールアドレスは登録されていません。';
-  return false;
+  $error = 'このメールアドレスは登録されていません。';
+  header("./login_miss.php?error={$error}");
 }
 //パスワード確認後sessionにメールアドレスとidとusernameを渡す
 // password_verify ハッシュ化されたパスワードと入力されたパスワード比較
 // ↑readmeファイルにサイトリンクあり
-if (password_verify($_POST['password'], $row['pass'])) {
+if (password_verify($_POST['password'], $row['password'])) {
   session_regenerate_id(true); //session_idを新しく生成し、置き換える
   $_SESSION['session_id'] = session_id();
   $_SESSION['email'] = $row['email'];
   $_SESSION['id'] = $row['id'];
   $_SESSION['username'] = $row['username'];
 } else {
-  echo 'パスワードが間違っています。';
-  return false;
+  $error = 'パスワードが間違っています。';
+  header("./login_miss.php?error={$error}");
 }
 
-header('Location:./home.php');
