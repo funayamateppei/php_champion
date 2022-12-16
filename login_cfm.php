@@ -1,16 +1,21 @@
 <?php
 
-// var_dump($_POST);
+// var_dump($_POST['email']);
 // exit();
 session_start();
 
 // DB接続
 require_once('./functions/connect_db.php');
 
+// 入力されているか確認
+if ($_POST['email'] === '' || $_POST['password'] === '') {
+  echo '入力してください。';
+}
+
 // メールアドレスのバリデーション
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-  $error = '入力された値が不正です。';
-  header("./login_miss.php?error={$error}");
+  echo '入力された値が不正です。';
+  return false;
 }
 
 // SQL作成実行取得
@@ -24,8 +29,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 //emailがDB内に存在しているか確認
 if (!isset($row['email'])) {
-  $error = 'このメールアドレスは登録されていません。';
-  header("./login_miss.php?error={$error}");
+  echo 'このメールアドレスは登録されていません。';
+  return false;
 }
 //パスワード確認後sessionにメールアドレスとidとusernameを渡す
 // password_verify ハッシュ化されたパスワードと入力されたパスワード比較
@@ -37,7 +42,8 @@ if (password_verify($_POST['password'], $row['password'])) {
   $_SESSION['id'] = $row['id'];
   $_SESSION['username'] = $row['username'];
 } else {
-  $error = 'パスワードが間違っています。';
-  header("./login_miss.php?error={$error}");
+  echo 'パスワードが間違っています。';
+  return false;
 }
 
+header('Location:./home.php');
