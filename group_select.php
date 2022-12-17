@@ -47,7 +47,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($result);
 // echo '</pre>';
 
-$reqestGroup = '';
+$requestGroup = '';
 if (count($result) !== 0) {
   $requestGroup = '
     <table>
