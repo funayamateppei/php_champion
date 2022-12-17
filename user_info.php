@@ -30,7 +30,7 @@ $_SESSION['id'] = $row['id'];
 
 <body>
   <fieldset>
-    <legend>Login</legend>
+    <legend>ユーザー情報登録</legend>
     <form action="./user_info_create.php" method="POST">
 
       <label for="lastName">苗字</label>

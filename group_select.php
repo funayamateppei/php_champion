@@ -10,15 +10,26 @@ $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
 $stmt->execute();
 $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$group = '';
+$group = '
+      <table>
+        <tr>
+          <th>グループ名</th>
+          <th>グループ参加日</th>
+          <th>都道府県名</th>
+          <th></th>
+        </tr>
+      ';
 foreach ($row as $v) {
   $group .= "
-    <p>{$v['group_name']}</p>
-    <p>{$v['admission_year']}</p>
-    <p>{$v['address']}</p>
-    <a href='./question.php'>入室</a>
+    <tr>
+      <td>{$v['group_name']}</td>
+      <td>{$v['admission_year']}年</td>
+      <td>{$v['address']}</td>
+      <td><a href='./question.php?group_id={$v['id']}'>入室</a></td>
+    </tr>
   ";
 }
+$group .= '</table>'
 
 ?>
 
@@ -189,11 +200,19 @@ foreach ($row as $v) {
         axios.get(url)
           .then((response) => {
             console.log(response.data);
-            const array = [];
+            const array = ['<table>'];
             response.data.map((v) => {
-              array.push(``);
+              array.push(`
+                <tr>
+                  <td>${v.group_name}</td>
+                  <td>${v.admission_year}年</td>
+                  <td>${v.address}</td>
+                  <td><a href='./group_join_request.php?group_id=${v.id}'>参加リクエスト</a></td>
+                </tr>
+              `);
             })
-            $('#todo').html(array);
+            array.push('</table>');
+            $('#searchGroup').html(array);
           }).catch((error) => {
             console.log(error);
           })
