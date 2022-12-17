@@ -12,7 +12,12 @@ $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $group = '';
 foreach ($row as $v) {
-  $group .= "{$v['group_name']}";
+  $group .= "
+    <p>{$v['group_name']}</p>
+    <p>{$v['admission_year']}</p>
+    <p>{$v['address']}</p>
+    <a href='./question.php'>入室</a>
+  ";
 }
 
 ?>
@@ -30,6 +35,7 @@ foreach ($row as $v) {
 <body>
   <div id="myGroup">
     <!-- 所属しているグループを表示 -->
+    <?= $group ?>
   </div>
 
   <!-- グループ検索フォーム -->
