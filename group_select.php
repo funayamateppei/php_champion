@@ -4,13 +4,16 @@ session_start();
 
 require_once('./functions/connect_db.php');
 
+// 参加中のグループを取得
 $sql = 'SELECT * FROM group_table WHERE user_id = :user_id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
 $stmt->execute();
 $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-$group = '
+$group = '';
+if (count($row) !== 0) {
+$group .= '
       <table>
         <tr>
           <th>グループ名</th>
@@ -29,7 +32,45 @@ foreach ($row as $v) {
     </tr>
   ";
 }
-$group .= '</table>'
+$group .= '</table>';
+}
+
+
+// 参加リクエスト許可待ち情報を取得
+$sql = 'SELECT * FROM group_join_request_table LEFT OUTER JOIN (SELECT * FROM group_table) AS group_table2 ON group_join_request_table.group_id = group_table2.id AND group_join_request_table.user_id = :user_id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// echo '<pre>';
+// var_dump($result);
+// echo '</pre>';
+
+$reqestGroup = '';
+if (count($result) !== 0) {
+  $requestGroup = '
+    <table>
+      <tr>
+        <th>グループ名</th>
+        <th>グループ参加日</th>
+        <th>都道府県名</th>
+        <th></th>
+      </tr>
+    ';
+  foreach ($result as $x) {
+    $requestGroup .= "
+      <tr>
+        <td>{$x['group_name']}</td>
+        <td>{$x['admission_year']}年</td>
+        <td>{$x['address']}</td>
+        <td>参加リクエスト許可待ち中</td>
+      </tr>
+    ";
+  }
+  $requestGroup .= '</table>';
+}
+
 
 ?>
 
@@ -45,18 +86,15 @@ $group .= '</table>'
 
 <body>
 
-<!-- 申請中のグループを表示する機能を実装してください -->
-<!-- 申請中のグループを表示する機能を実装してください -->
-<!-- 申請中のグループを表示する機能を実装してください -->
-<!-- 申請中のグループを表示する機能を実装してください -->
-<!-- 申請中のグループを表示する機能を実装してください -->
-<!-- 申請中のグループを表示する機能を実装してください -->
-<!-- 申請中のグループを表示する機能を実装してください -->
-
-
+  
   <div id="myGroup">
     <!-- 所属しているグループを表示 -->
     <?= $group ?>
+  </div>
+  
+  <!-- 参加リクエスト申請中のグループを表示 -->
+  <div id="requestGroup">
+    <?= $requestGroup ?>
   </div>
 
   <!-- グループ検索フォーム -->
