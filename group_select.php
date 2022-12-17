@@ -65,6 +65,7 @@ if (count($result) !== 0) {
         <td>{$x['admission_year']}年</td>
         <td>{$x['address']}</td>
         <td>参加リクエスト許可待ち中</td>
+        <td><a href='./group_join_cancel.php?group_id={$x['group_id']}'>申請取消</a></td>
       </tr>
     ";
   }
