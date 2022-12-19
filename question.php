@@ -5,9 +5,17 @@
 
 session_start();
 
-$group = $_GET['group_id'];
-
 require_once('./functions/connect_db.php');
+
+// グループの情報を取得
+$sql = 'SELECT * FROM group_table WHERE id = :group_id';
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':group_id', $_GET['group_id'], PDO::PARAM_INT);
+$stmt->execute();
+$groupInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// var_dump($groupInfo);
+// exit();
 
 // グループ参加済みのユーザーを取得
 $sql = 'SELECT * FROM group_join_table LEFT OUTER JOIN (SELECT * FROM user_info_table) AS user_info_table2 ON group_join_table.user_id = user_info_table2.user_id WHERE group_id = :group_id';
@@ -31,15 +39,10 @@ if (count($row) !== 0) {
   }
 }
 
-// ユーザーを取得した中から4人ランダムで表示して
-// 質問に答えさせるためにJSにデータを送る
-$group_array = json_encode($row);
-
-
 // 参加リクエスト申請中のユーザーを取得
 $sql = 'SELECT * FROM group_join_request_table LEFT OUTER JOIN (SELECT id, user_id, first_name, last_name, image_path, gender FROM user_info_table) AS request_user_info_table ON group_join_request_table.user_id = request_user_info_table.user_id WHERE group_id = :group_id';
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':group_id', $group, PDO::PARAM_INT);
+$stmt->bindValue(':group_id', $_GET['group_id'], PDO::PARAM_INT);
 $stmt->execute();
 $requestUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -61,6 +64,21 @@ if (count($requestUsers) !== 0) {
   }
 }
 
+// 質問の数をJSに送る（ランダムの数を作るため）
+$sql = 'SELECT * FROM question_table';
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$question = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// var_dump($count);
+
+$questionJS = json_encode($question);
+
+
+// ユーザーを取得した中から4人ランダムで表示して
+// 質問に答えさせるためにJSにデータを送る
+$group_array = json_encode($row);
+
 ?>
 
 
@@ -76,8 +94,16 @@ if (count($requestUsers) !== 0) {
 
 <body>
   <header>
-    <h1>なんばー１</h1>
+    <h1><?= $groupInfo['group_name'] . ' ' . $groupInfo['admission_year'] . '年' ?></h1>
   </header>
+
+  <div id="groupSelect">
+    <a href="./group_select.php">グループ選択画面</a>
+  </div>
+
+  <div id="myPage">
+    <a href="./myPage.php">マイページへ</a>
+  </div>
 
   <div id="member">
     <p>メンバー</p>
@@ -93,20 +119,27 @@ if (count($requestUsers) !== 0) {
     </ul>
   </div>
 
-  <div id="myPage">
-
-  </div>
-
   <div id="display">
     <div id="question">
       <!-- クエスチョン表示 -->
     </div>
   </div>
 
-  <script>
-    let groupArray = <?php echo $group_array; ?>;
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script>
+    // クエスチョンの個数を取得
+    let questionArray = <?= $questionJS ?>;
+    console.log(questionArray);
+
+    // グループの参加者を取得
+    let groupArray = <?php echo $group_array; ?>;
     console.log(groupArray);
+
+    
   </script>
 </body>
 
