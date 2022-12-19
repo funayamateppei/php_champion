@@ -28,7 +28,7 @@ foreach ($row as $v) {
       <td>{$v['group_name']}</td>
       <td>{$v['admission_year']}年</td>
       <td>{$v['address']}</td>
-      <td><a href='./question.php?group_id={$v['group_id']}'>入室</a></td>
+      <td><a href='./question.php?group_id={$v['id']}'>入室</a></td>
     </tr>
   ";
 }

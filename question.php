@@ -10,16 +10,16 @@ $group = $_GET['group_id'];
 require_once('./functions/connect_db.php');
 
 // グループ参加済みのユーザーを取得
-$sql = 'SELECT * FROM group_table LEFT OUTER JOIN (SELECT user_id, first_name, last_name FROM user_info_table) AS user_info_table2 ON group_table.user_id = user_info_table2.user_id WHERE id = :id';
+$sql = 'SELECT * FROM group_join_table LEFT OUTER JOIN (SELECT * FROM user_info_table) AS user_info_table2 ON group_join_table.user_id = user_info_table2.user_id WHERE group_id = :group_id';
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(':id', $group, PDO::PARAM_INT);
+$stmt->bindValue(':group_id', $_GET['group_id'], PDO::PARAM_INT);
 $stmt->execute();
 $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<pre>';
-var_dump($row);
-echo '</pre>';
-exit();
+// echo '<pre>';
+// var_dump($row);
+// echo '</pre>';
+// exit();
 
 // グループ参加済のメンバーを表示する
 $groupMember = '';
@@ -54,11 +54,12 @@ if (count($requestUsers) !== 0) {
   foreach ($requestUsers as $v) {
     $requestDay = date("Y年m月d日", strtotime($v['created_at']));
     $requestUser .= "
-      <li>{$v['last_name']} {$v['first_name']} {$requestDay} <a href='./group_join_allow.php?user_id={$v['user_id']}&group_id={$v['group_id']}'>許可</a> <a href='./group_join_delete.php?user_id={$v['user_id']}&group_id={$v['group_id']}'>拒否</a></li>
+      <li>{$v['last_name']} {$v['first_name']} {$requestDay} 
+      <a href='./group_join_allow.php?user_id={$v['user_id']}&group_id={$v['group_id']}'>許可</a> 
+      <a href='./group_join_delete.php?user_id={$v['user_id']}&group_id={$v['group_id']}'>拒否</a></li>
     ";
   }
 }
-
 
 ?>
 
