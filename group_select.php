@@ -5,7 +5,7 @@ session_start();
 require_once('./functions/connect_db.php');
 
 // 参加中のグループを取得
-$sql = 'SELECT * FROM group_table WHERE user_id = :user_id';
+$sql = 'SELECT * FROM group_join_table LEFT OUTER JOIN (SELECT * FROM group_table) AS group_table2 ON group_join_table.group_id = group_table2.id WHERE user_id = :user_id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
 $stmt->execute();
@@ -28,16 +28,46 @@ foreach ($row as $v) {
       <td>{$v['group_name']}</td>
       <td>{$v['admission_year']}年</td>
       <td>{$v['address']}</td>
-      <td><a href='./question.php?group_id={$v['id']}'>入室</a></td>
+      <td><a href='./question.php?group_id={$v['group_id']}'>入室</a></td>
     </tr>
   ";
 }
 $group .= '</table>';
 }
 
+// $sql = 'SELECT * FROM group_table WHERE user_id = :user_id';
+// $stmt = $pdo->prepare($sql);
+// $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
+// $stmt->execute();
+// $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// $group = '';
+// if (count($row) !== 0) {
+// $group .= '
+//       <table>
+//         <tr>
+//           <th>グループ名</th>
+//           <th>グループ参加日</th>
+//           <th>都道府県名</th>
+//           <th></th>
+//         </tr>
+//       ';
+// foreach ($row as $v) {
+//   $group .= "
+//     <tr>
+//       <td>{$v['group_name']}</td>
+//       <td>{$v['admission_year']}年</td>
+//       <td>{$v['address']}</td>
+//       <td><a href='./question.php?group_id={$v['group_id']}'>入室</a></td>
+//     </tr>
+//   ";
+// }
+// $group .= '</table>';
+// }
+
 
 // 参加リクエスト許可待ち情報を取得
-$sql = 'SELECT * FROM group_join_request_table LEFT OUTER JOIN (SELECT * FROM group_table) AS group_table2 ON group_join_request_table.group_id = group_table2.id AND group_join_request_table.user_id = :user_id';
+$sql = 'SELECT * FROM group_join_request_table LEFT OUTER JOIN (SELECT * FROM group_table) AS group_table2 ON group_join_request_table.group_id = group_table2.id WHERE user_id = :user_id';
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
 $stmt->execute();
@@ -87,14 +117,15 @@ if (count($result) !== 0) {
 
 <body>
 
-  
+  <!-- 所属しているグループを表示 -->
   <div id="myGroup">
-    <!-- 所属しているグループを表示 -->
+    所属しているグループ
     <?= $group ?>
   </div>
   
   <!-- 参加リクエスト申請中のグループを表示 -->
   <div id="requestGroup">
+    参加リクエスト申請中表示
     <?= $requestGroup ?>
   </div>
 
