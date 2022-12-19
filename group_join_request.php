@@ -21,9 +21,6 @@ $count = $stmt->fetchColumn();
 
 // もし見つからなかったらグループ参加リクエスト申請実行
 if ($count === 0) {
-  $sql = 'SELECT * FROM group_table '
-
-
   $sql = 'INSERT INTO group_join_request_table (id, user_id, group_id, created_at) VALUES (NULL, :user_id, :group_id, now())';
   $stmt = $pdo->prepare($sql);
   $stmt->bindValue(':user_id', $_SESSION['id'], PDO::PARAM_INT);
