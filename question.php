@@ -136,7 +136,7 @@ $group_array = json_encode($row);
   <script>
     // クエスチョンの個数を取得
     const questionArray = <?= $questionJS ?>;
-    console.log(questionArray);
+    // console.log(questionArray);
 
     // グループの参加者を取得
     const groupArray = <?= $group_array ?>;
@@ -149,7 +149,6 @@ $group_array = json_encode($row);
         // すべての人間で選択肢
         let strQuestion = `<p>${questionArray[randomNumber].question}</p>`;
         $('#question').html(strQuestion);
-
         const member = [];
         const memberId = [];
         for (let i = 0; member.length < 4; i++) {
@@ -157,6 +156,36 @@ $group_array = json_encode($row);
           if (memberId.indexOf(groupArray[random].id) === -1) {
             memberId.push(groupArray[random].id);
             member.push(groupArray[random]);
+          }
+        }
+        // console.log(member);
+        let strMember = [];
+        member.map((x) => {
+          strMember.push(`
+          <a href='./answer_create.php?answered_id=${x.id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
+          `);
+        })
+        // console.log(strMember);
+        $('#questionMember').html(strMember);
+      } else if (questionArray[randomNumber].gender === 1) {
+        // 女のみで選択肢
+        let str = `<p>${questionArray[randomNumber].question}</p>`;
+        $('#question').html(str);
+        // 女だけの配列を作成
+        const womanArray = [];
+        groupArray.map((x, i) => {
+          if (x.gender === 1) {
+            womanArray.push(x);
+          }
+        })
+        console.log(womanArray);
+        const member = [];
+        const memberId = [];
+        for (let i = 0; member.length < 4; i++) {
+          const random = Math.floor(Math.random() * womanArray.length);
+          if (memberId.indexOf(womanArray[random].id) === -1) {
+            memberId.push(womanArray[random].id);
+            member.push(womanArray[random]);
           }
         }
         console.log(member);
@@ -168,16 +197,36 @@ $group_array = json_encode($row);
         })
         console.log(strMember);
         $('#questionMember').html(strMember);
-      } else if (questionArray[randomNumber].gender === 1) {
-        // 女で選択肢
-        let str = `<p>${questionArray[randomNumber].question}</p>`;
-        $('#question').html(str);
-
       } else if (questionArray[randomNumber].gender === 0) {
-        // 男で選択肢
+        // 男のみで選択肢
         let str = `<p>${questionArray[randomNumber].question}</p>`;
         $('#question').html(str);
-
+        // 男だけの配列を作成
+        const manArray = [];
+        groupArray.map((x, i) => {
+          if (x.gender === 0) {
+            manArray.push(x);
+          }
+        })
+        console.log(manArray);
+        const member = [];
+        const memberId = [];
+        for (let i = 0; member.length < 4; i++) {
+          const random = Math.floor(Math.random() * manArray.length);
+          if (memberId.indexOf(manArray[random].id) === -1) {
+            memberId.push(manArray[random].id);
+            member.push(manArray[random]);
+          }
+        }
+        console.log(member);
+        let strMember = [];
+        member.map((x) => {
+          strMember.push(`
+          <a href='./answer_create.php?answered_id=${x.id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
+          `);
+        })
+        console.log(strMember);
+        $('#questionMember').html(strMember);
       }
     }
   </script>
