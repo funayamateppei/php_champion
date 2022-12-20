@@ -105,6 +105,10 @@ $group_array = json_encode($row);
     <a href="./myPage.php">マイページへ</a>
   </div>
 
+  <div id="groupRanking">
+    <a href="./ranking.php?group_id=<?=$_GET['group_id']?>">グループランキングへ</a>
+  </div>
+
   <div id="member">
     <p>メンバー</p>
     <ul>
@@ -136,7 +140,7 @@ $group_array = json_encode($row);
   <script>
     // クエスチョンの個数を取得
     const questionArray = <?= $questionJS ?>;
-    // console.log(questionArray);
+    console.log(questionArray);
 
     // グループの参加者を取得
     const groupArray = <?= $group_array ?>;
@@ -158,14 +162,14 @@ $group_array = json_encode($row);
             member.push(groupArray[random]);
           }
         }
-        // console.log(member);
+        console.log(member);
         let strMember = [];
         member.map((x) => {
           strMember.push(`
           <a href='./answer_create.php?answered_id=${x.id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
           `);
         })
-        // console.log(strMember);
+        console.log(strMember);
         $('#questionMember').html(strMember);
       } else if (questionArray[randomNumber].gender === 1) {
         // 女のみで選択肢
