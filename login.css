@@ -58,9 +58,10 @@ form input {
   height: 44px;
   color: white;
   padding: 15px;
+  position: relative;
 }
 
-button {
+.formBtn {
   margin-top: 20px;
   text-align: center;
   padding: 7px 14px;
@@ -89,4 +90,12 @@ a {
   color: #FF0000;
   text-decoration: none;
   margin-left: 5px;
+}
+
+#passBtn {
+  position: absolute;
+    top: 56%;
+    left: 74%;
+  border: none;
+  background-color: transparent;
 }
