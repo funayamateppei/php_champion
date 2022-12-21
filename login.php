@@ -14,7 +14,6 @@
   <!-- ログインフォーム -->
   <h1>Let’s get started</h1>
   <fieldset>
-    <legend>Login below</legend>
     <form action="./login_cfm.php" method="POST">
       <div>
         <label for="email">Email</label>
