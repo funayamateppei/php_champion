@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+* {
+  font-family: 'RocknRoll One', sans-serif;
+}
+
+body {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  background: #343B71;
+}
+
+h1 {
+  position: absolute;
+  top: 7%;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  line-height: 30px;
+  font-weight: normal;
+}
+
+fieldset {
+  position: absolute;
+  top: 23%;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+form label {
+  width: 70%;
+  margin-left: 16%;
+  margin-bottom: 5px;
+  color: white;
+}
+
+form input {
+  width: 70%;
+  margin: 0 auto 20px auto;
+  border: 2px solid #FFFFFF;
+  border-radius: 30px;
+  background-color: #343B71;
+  height: 44px;
+  color: white;
+  padding: 15px;
+  position: relative;
+}
+
+.formBtn {
+  margin-top: 20px;
+  text-align: center;
+  padding: 7px 14px;
+  border-radius: 20px;
+  width: 105px;
+  font-size: 17px;
+  line-height: 21px;
+  color: #343B71;
+  background: #C4C4C4;
+  border: none;
+}
+
+.link {
+  position: absolute;
+  bottom: 5%;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+p {
+  color: white;
+}
+
+a {
+  color: #FF0000;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+#passBtn1, #passBtn2 {
+  border: none;
+  background-color: transparent;
+}
+
+#passBtn1 {
+  position: absolute;
+    top: 40.5%;
+    left: 74%;
+}
+
+#passBtn2 {
+  position: absolute;
+    top: 68%;
+    left: 74%;
+}
