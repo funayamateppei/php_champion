@@ -70,13 +70,13 @@ if (count($result) !== 0) {
   <div id="body">
     <!-- 所属しているグループを表示 -->
     <div id="myGroup">
-      <h2>所属グループ</h2>
+      <h2>所属グループ一覧</h2>
       <?= $group ?>
     </div>
     <hr>
     <!-- 参加リクエスト申請中のグループを表示 -->
     <div id="requestGroup">
-      <h2>参加リクエスト中</h2>
+      <h2>参加リクエスト中一覧</h2>
       <?= $requestGroup ?>
     </div>
     <hr>

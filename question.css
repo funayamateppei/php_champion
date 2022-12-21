@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+* {
+  font-family: 'RocknRoll One', sans-serif, 'Kokoro';
+}
+
+body {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  background: #343B71;
+}
+
+header {
+  padding-top: 50px;
+}
+
+h2 {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: normal;
+}
+
+#question {
+  width: 90%;
+  margin: 0 auto;
+  position: absolute;
+  top: 30%;
+}
+
+#questionMember {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#questionMember a {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 45%;
+  margin: 8px;
+  text-align: center;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 17px;
+  line-height: 21px;
+  color: #343B71;
+  background: #C4C4C4;
+  border: none;
+  text-decoration: none;
+}
+
+h3 {
+  display: inline-block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: normal;
+}
+
+#display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#memberBtn {
+  position: absolute;
+  top: 75%;
+  left: 32%;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: #343B71;
+  color: white;
+  padding: 5px 15px;
+}
+
+
+
+#groupSelect {
+  box-sizing: border-box;
+  position: absolute;
+  top: 3%;
+  left: 8%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: transparent;
+}
+
+#groupSelect a {
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 29px;
+}
+
+#groupRanking {
+  position: absolute;
+  top: 3%;
+  right: 8%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid white;
+  background-color: transparent;
+}
+
+#groupRanking a {
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 29px;
+  text-decoration: none;
+}
+
+#myPage {
+  position: absolute;
+  top: 85%;
+  left: 32%;
+  border: 2px solid white;
+  border-radius: 20px;
+  background-color: #343B71;
+  padding: 5px 15px;
+}
+
+#myPage a {
+  color: white;
+  text-decoration: none;
+}
+
+
+#memberList {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: #6574e4;
+}
+
+#memberList h2 {
+  text-align: left;
+  margin-left: 20px;
+}
+
+#memberList span {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  font-size: 1.5rem;
+}
+
+#memberList h2 {
+  padding-top: 30px;
+}
+
+#memberList li {
+  color: white;
+  margin-left: 50px;
+}
+
+#requestMember li {
+  display: block;
+}
+
+#requestMember a {
+  display: inline-block;
+  margin: 12px;
+  text-align: center;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 17px;
+  line-height: 21px;
+  color: #343B71;
+  background: #C4C4C4;
+  border: none;
+  text-decoration: none;
+}
