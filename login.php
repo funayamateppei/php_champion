@@ -12,27 +12,25 @@
 
 <body>
   <!-- ログインフォーム -->
+  <h1>Let’s get started</h1>
   <fieldset>
-    <legend>Login</legend>
+    <legend>Login below</legend>
     <form action="./login_cfm.php" method="POST">
-      <label for="email">Email</label>
-      <input id="email" class="input" type="email" name="email">
-      <label for="password">Password</label>
-      <input id="password" class="input" type="password" name="password">
-      <button>Login</button>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" class="input" type="email" name="email">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" class="input" type="password" name="password">
+      </div>
+      <button>SIGN IN</button>
     </form>
   </fieldset>
-  <p>登録がお済みではない方はこちら</p>
-  <a href="./signup.php">Signup</a>
-  
-
-  <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-  <script>
-
-  </script>
-
+  <div class="link">
+    <p>Dont’t have an account?</p>
+    <a href="./signup.php">SIGN UP</a>
+  </div>
 </body>
 
 </html>
