@@ -23,9 +23,9 @@ $stmt->bindValue(':group_id', $_GET['group_id'], PDO::PARAM_INT);
 $stmt->execute();
 $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// echo '<pre>';
-// var_dump($row);
-// echo '</pre>';
+echo '<pre>';
+var_dump($row);
+echo '</pre>';
 
 $result = json_encode($row);
 

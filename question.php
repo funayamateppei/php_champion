@@ -192,7 +192,7 @@ $group_array = json_encode($row);
         let strMember = [];
         member.map((x) => {
           strMember.push(`
-          <a href='./answer_create.php?answered_id=${x.id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
+          <a href='./answer_create.php?answered_id=${x.user_id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
           `);
         })
         console.log(strMember);
@@ -222,7 +222,7 @@ $group_array = json_encode($row);
         let strMember = [];
         member.map((x) => {
           strMember.push(`
-          <a href='./answer_create.php?answered_id=${x.id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
+          <a href='./answer_create.php?answered_id=${x.user_id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
           `);
         })
         console.log(strMember);
@@ -252,7 +252,7 @@ $group_array = json_encode($row);
         let strMember = [];
         member.map((x) => {
           strMember.push(`
-          <a href='./answer_create.php?answered_id=${x.id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
+          <a href='./answer_create.php?answered_id=${x.user_id}&question_id=${questionArray[randomNumber].id}&group_id=<?= $_GET['group_id'] ?>'>${x.last_name} ${x.first_name}</a>
           `);
         })
         console.log(strMember);
