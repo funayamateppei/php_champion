@@ -121,7 +121,7 @@ $group_array = json_encode($row);
   </div>
 
   <div id="myPage">
-    <a href="./myPage.php">マイページへ</a>
+    <a href="./myPage.php?group_id=<?=$_GET['group_id']?>">マイページへ</a>
   </div>
 
   <div id="groupRanking">

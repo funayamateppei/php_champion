@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+* {
+  font-family: 'RocknRoll One', sans-serif, 'Kokoro';
+}
+
+body {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  background: #343B71;
+}
