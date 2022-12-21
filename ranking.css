@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+* {
+  font-family: 'RocknRoll One', sans-serif, 'Kokoro';
+}
+
+body {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  background: #343B71;
+}
+
+header {
+  padding-top: 50px;
+}
+
+h1 {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: normal;
+}
+
+h2 {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: normal;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+#back {
+  box-sizing: border-box;
+  position: absolute;
+  top: 3%;
+  left: 8%;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+#back a {
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 29px;
+  text-decoration: none;
+}
+
+#table .item h3 {
+  color: white;
+}
+
+.item ul {
+  padding-left: 0;
+}
+
+.item ol {
+  color: white;
+  text-decoration: none;
+}
+
+.item {
+  padding: 15px;
+}

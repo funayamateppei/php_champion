@@ -38,20 +38,25 @@ $result = json_encode($row);
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+  <link rel="stylesheet" href="./ranking.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Document</title>
 </head>
 
 <body>
   <header>
-    <h1><?= $groupInfo['group_name'] . ' ' . $groupInfo['admission_year'] . '年' ?></h1>
+    <h1><?= $groupInfo['group_name'] ?></h1>
+    <h1><?= $groupInfo['admission_year'] . '年' ?></h1>
   </header>
 
   <div id="back">
-    <a href="./question.php?group_id=<?=$_GET['group_id']?>">戻る</a>
+    <a href="./question.php?group_id=<?= $_GET['group_id'] ?>" class="fa-solid fa-circle-arrow-left"></a>
   </div>
 
   <div id="rank">
-    <h2>ランキング</h2>
+    <h2>ランキング一覧</h2>
     <div id="table">
       <!-- tableでランキングを追加 -->
     </div>
@@ -135,25 +140,31 @@ $result = json_encode($row);
       if (x.length >= 3) {
         rank.push(`
           <div class="item">
-          <h2>${x[0][0].question}</h2>
-          <p>１位 ${x[0][0].last_name} ${x[0][0].first_name} ${x[0].length}票</p>
-          <p>２位 ${x[1][0].last_name} ${x[1][0].first_name} ${x[1].length}票</p>
-          <p>３位 ${x[2][0].last_name} ${x[2][0].first_name} ${x[2].length}票</p>
+          <h3>${x[0][0].question}</h3>
+          <ul>
+          <ol>１位 ${x[0][0].last_name} ${x[0][0].first_name} ${x[0].length}票</ol>
+          <ol>２位 ${x[1][0].last_name} ${x[1][0].first_name} ${x[1].length}票</ol>
+          <ol>３位 ${x[2][0].last_name} ${x[2][0].first_name} ${x[2].length}票</ol>
+          </ul>
           </div>
         `);
       } else if (x.length === 2) {
         rank.push(`
           <div class="item">
-          <h2>${x[0][0].question}</h2>
-          <p>１位 ${x[0][0].last_name} ${x[0][0].first_name} ${x[0].length}票</p>
-          <p>２位 ${x[1][0].last_name} ${x[1][0].first_name} ${x[1].length}票</p>
+          <h3>${x[0][0].question}</h3>
+          <ul>
+          <ol>１位 ${x[0][0].last_name} ${x[0][0].first_name} ${x[0].length}票</ol>
+          <ol>２位 ${x[1][0].last_name} ${x[1][0].first_name} ${x[1].length}票</ol>
+          </ul>
           </div>
         `);
       } else if (x.length === 1) {
         rank.push(`
           <div class="item">
-          <h2>${x[0][0].question}</h2>
-          <p>１位 ${x[0][0].last_name} ${x[0][0].first_name} ${x[0].length}票</p>
+          <h3>${x[0][0].question}</h3>
+          <ul>
+          <ol>１位 ${x[0][0].last_name} ${x[0][0].first_name} ${x[0].length}票</ol>
+          </ul>
           </div>
         `);
       }
