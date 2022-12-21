@@ -57,6 +57,8 @@ form input {
   border-radius: 30px;
   background-color: #343B71;
   height: 44px;
+  color: white;
+  padding: 15px;
 }
 
 button {
